@@ -131,3 +131,20 @@ h1 {
   padding: 5px;
   border-radius: 5px;
 }
+
+button {
+  background-color: #242424;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 20px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #535bf2;
+}

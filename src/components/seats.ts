@@ -1,77 +1,43 @@
-import { loadData } from "../methods/connect";
-loadData();
+import { loadData,reserveSeats  } from "../methods/connect";
 
-export function addModalSeats() {
+export async function addModalSeats() {
   document.querySelector<HTMLDivElement>("#seatsAsignament")!.innerHTML = `
   <div class="modal-content">
     <span class="close">&times;</span>
     <div class="screen">PANTALLA</div>
     <div class="cinema"></div>
+
+    <div class="selection">
+      <button class="btn btn-primary" id="btnReserve">Reservar</button>
+      <button class="btn btn-secondary" id="btnCancel">Cancelar</button>
+    </div>
   </div>
 `;
 
-  //const file = Bun.file("./info.json");
-  const rows: number = 11; // Número de filas
-  const cols: number = 10; // Número de columnas
-  const cinema: HTMLElement | null = document.querySelector(".cinema");
-  const letter: string[] = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "Ñ",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-  ];
+  loadData();
 
-  let fila: number = 0;
-  let columna: number = 1;
+  const cinema: HTMLElement | null = document.querySelector(".cinema");
+
+  let asientos = await loadData();
 
   // Crear asientos en la cuadrícula
-  for (let i = 0; i < rows * cols; i++) {
+  for (let i = 0; i < asientos.seats.length; i++) {
     const seat = document.createElement("div");
     seat.classList.add("seat");
 
-    if (i % 10 == 0) {
-      fila += 1;
-    }
 
-    if (columna > 10) {
-      columna = 1;
-    }
+    seat.innerHTML = `<span>${asientos.seats[i].seat}</span>`;
 
-    seat.innerHTML = `<span>${letter[fila - 1]} - ${columna}</span>`;
-    let seatNumber: string = letter[fila - 1] + " - " + columna;
-    columna++;
-
-    if (Math.random() < 0.2) {
+    if (asientos.seats[i].status != "Free") {
       seat.classList.add("occupied");
     } else {
       seat.addEventListener("click", () => {
+        reserveSeats(i,asientos.seats[i].seat,"Occupied");
         seat.classList.toggle("selected");
       });
     }
 
     cinema!.appendChild(seat);
   }
+
 }
