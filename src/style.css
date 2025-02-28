@@ -25,7 +25,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
@@ -73,10 +73,10 @@ h1 {
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
+  background-color: #242424;
+  margin: 3% auto; /* 15% from the top and centered */
+  padding: 10px;
+  border: 1px solid #414141;
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
@@ -95,7 +95,7 @@ h1 {
   cursor: pointer;
 }
 
-.cinema {
+.body {
   display: grid;
   grid-template-columns: repeat(10, 50px);
   gap: 10px;
@@ -120,13 +120,13 @@ h1 {
   background-color: red;
   cursor: not-allowed;
 }
-.screen {
-  background-color: white;
+.title {
+  /* background-color: white; */
   width: 80%;
   height: 30px;
   margin: 20px auto;
   text-align: center;
-  color: black;
+  color: rgb(255, 255, 255);
   font-weight: bold;
   padding: 5px;
   border-radius: 5px;
@@ -143,8 +143,182 @@ button {
   font-size: 1em;
   font-weight: bold;
   transition: background 0.3s;
+  border: 1px solid #414141;
 }
 
 button:hover {
+  background-color: #535bf2;
+}
+
+/* Cartelera Styles*/
+
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #353535;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formulario label {
+  font-weight: bold;
+  color: #c0c0c0;
+  margin-bottom: 5px;
+}
+
+.formulario input,
+.formulario textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+  border-color: #646cff;
+  outline: none;
+}
+
+.formulario button {
+  align-self: flex-end;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.formulario button:hover {
+  background-color: #535bf2;
+}
+
+/* Card Style */
+.card {
+  background-color: #5c5c5c;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 300px;
+  margin: 20px auto;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #213547;
+}
+
+.card-description {
+  font-size: 1em;
+  color: #646464;
+  margin-bottom: 20px;
+}
+
+.card-button {
+  background-color: #646cff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.card-button:hover {
+  background-color: #535bf2;
+}
+
+.movies {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  gap: 20px;
+  justify-content: center;
+}
+
+/* User form Styles */
+.userForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #353535; /* Lighter background color */
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.userForm label {
+  font-weight: bold;
+  color: #c0c0c0; /* Darker text color */
+  margin-top: 5px;
+}
+
+.userForm p{
+  font-weight: bold;
+  color: #c0c0c0; /* Darker text color */
+  margin-bottom: 15px;
+  margin-top: 0px;
+}
+
+.userForm input,
+.userForm textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+
+}
+
+.userForm input:focus,
+.userForm textarea:focus {
+  border-color: #646cff;
+  outline: none;
+}
+
+.userForm button {
+  align-self: flex-end;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.userForm button:hover {
   background-color: #535bf2;
 }
