@@ -1,4 +1,4 @@
-import { loadData,reserveSeats  } from "../methods/connect";
+import { loadData  } from "../methods/connect";
 import { Movie,SeatOcupation } from "../types/types";
 import { boucherUser } from "./usuario";
 
