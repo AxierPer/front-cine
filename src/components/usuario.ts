@@ -1,10 +1,11 @@
+import { addUser, reserveSeats } from "../methods/connect";
 import { Movie, SeatOcupation } from "../types/types";
 
 export async function boucherUser(id:string, seats: SeatOcupation[], movie: Movie) {
     document.querySelector<HTMLDivElement>("#boucherUser")!.innerHTML = `
 
     <div class="modal-content">
-        <span id="close-seats" class="close">&times;</span>
+        <span id="closeForm" class="close">&times;</span>
         <div class="title">FORMULARIO</div>
         <div class="body"></div>
 
@@ -25,7 +26,7 @@ export async function boucherUser(id:string, seats: SeatOcupation[], movie: Movi
                 <label>Asientos</label>
                 <p></p>
             </div>
-            <button type="submit">Confirmar</button>
+            <button class="btn btn-primary" id="reserve">Confirmar</button>
         </form>
 
         <div class="selection">
@@ -34,10 +35,14 @@ export async function boucherUser(id:string, seats: SeatOcupation[], movie: Movi
         </div>
     </div>
     `
-    console.log(id,seats,movie);
+
+    const modalForm = document.querySelector<HTMLDivElement>("#boucherUser")!;
+    const span: HTMLElement | null = document.querySelector("#closeForm");
+    span!.onclick = function () {
+        modalForm!.style.display = "none";
+    };
 
     const selectedSeatsContainer = document.querySelector<HTMLDivElement>("#selectedSeats");
-
     if (selectedSeatsContainer) {
         seats.forEach(seat => {
             const seatElement = document.createElement("p");
@@ -45,4 +50,12 @@ export async function boucherUser(id:string, seats: SeatOcupation[], movie: Movi
             selectedSeatsContainer.appendChild(seatElement);
         });
     }
+
+    const user = document.querySelector("#reserve")!;
+    user.addEventListener("click",  () => {
+        const userName = document.querySelector<HTMLInputElement>("#userName")!.value;
+        addUser({name: userName, movie, seats});
+        reserveSeats(id, seats);
+        window.location.reload();
+    })
 }

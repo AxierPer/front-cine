@@ -322,3 +322,37 @@ button:hover {
 .userForm button:hover {
   background-color: #535bf2;
 }
+
+
+/* User List Styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: #353535;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th, 
+.table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #414141;
+}
+
+.table th {
+  background-color: #646cff;
+  color: white;
+  font-weight: bold;
+}
+
+.table tr:hover {
+  background-color: #424242;
+}
+
+.table td button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  font-size: 0.9em;
+}

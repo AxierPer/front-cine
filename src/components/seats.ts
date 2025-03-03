@@ -1,11 +1,11 @@
-import { loadData  } from "../methods/connect";
+import { loadData, removeMovie, removeUserByMovie  } from "../methods/connect";
 import { Movie,SeatOcupation } from "../types/types";
 import { boucherUser } from "./usuario";
 
 export async function addModalSeats(id:string, movie: Movie) {
   document.querySelector<HTMLDivElement>("#seatsAsignament")!.innerHTML = `
   <div class="modal-content">
-    <span id="close-seats" class="close">&times;</span>
+    <span id="closeSeats" class="close">&times;</span>
     <div class="title">PANTALLA</div>
     <div class="body"></div>
 
@@ -14,6 +14,7 @@ export async function addModalSeats(id:string, movie: Movie) {
     <div class="selection">
       <button class="btn btn-primary" id="btnReserve">Reservar</button>
       <button class="btn btn-secondary" id="btnCancel">Cancelar</button>
+      <button class="btn btn-secondary" id="btnEliminar">Eliminar</button>
     </div>
   </div>
 `;
@@ -22,7 +23,6 @@ export async function addModalSeats(id:string, movie: Movie) {
 
   let asientos = await loadData(id);
   let asientosReservados: SeatOcupation[] = [];
-  console.log(asientos);
 
   // Crear asientos en la cuadrícula
   for (let i = 0; i < asientos.length; i++) {
@@ -39,7 +39,8 @@ export async function addModalSeats(id:string, movie: Movie) {
         asientosReservados.push({
           id: i, 
           seat: asientos[i].seat,
-          status: "Occupied"
+          status: "Occupied",
+          movie: movie.title
         });
         seat.classList.toggle("selected");
       });
@@ -48,8 +49,15 @@ export async function addModalSeats(id:string, movie: Movie) {
   }
 
   const modalUser = document.querySelector<HTMLDivElement>("#boucherUser");
-
   const btn = document.querySelector<HTMLButtonElement>("#btnReserve");
+  const btnEliminar: HTMLElement | null = document.querySelector("#btnEliminar");
+  
+  btnEliminar!.onclick = function () {
+    removeMovie(id);
+    removeUserByMovie(movie.id);
+    window.location.reload();
+  };
+
   btn!.addEventListener("click", () => {
     boucherUser(id, asientosReservados, movie);
     modalUser!.style.display = "block";
@@ -58,23 +66,6 @@ export async function addModalSeats(id:string, movie: Movie) {
         modalUser!.style.display = "none";
       }
     };
-  
-    const span: HTMLElement | null = document.querySelector("#close-seats");
-    span!.onclick = function () {
-      modalUser!.style.display = "none";
-    };
-  
-    const btnReserva: HTMLElement | null = document.querySelector("#btnReserve");
-    btnReserva!.onclick = function () {
-      modalUser!.style.display = "none";
-    };
-  
-    const btnCancelar: HTMLElement | null = document.querySelector("#btnCancel");
-    btnCancelar!.onclick = function () {
-      modalUser!.style.display = "none";
-    };
-    // reserveSeats(id,asientosReservados);
-    // console.log(asientosReservados)
   });
 }
 

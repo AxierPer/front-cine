@@ -1,5 +1,5 @@
 export type Movie = {
-    id: number;
+    id: string;
     title: string;
     description: string;
     schedule: string;
@@ -7,8 +7,14 @@ export type Movie = {
     sala: number;
 }
 
+export interface MovieCreate extends Movie {
+    image: string;
+    genero: string;
+}
+
 export type SeatOcupation = {
     id : number;
     seat: string;
     status: string;
+    movie: string;
 }; 
